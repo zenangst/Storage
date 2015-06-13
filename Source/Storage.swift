@@ -36,10 +36,6 @@ public class Storage {
     }
   }
 
-  static func save(# resource: URLStringConvertible, _ path: URLStringConvertible) {
-
-  }
-
   static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
     let savePath = Storage.buildPath(path, createPath: true)
 
