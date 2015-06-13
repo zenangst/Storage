@@ -2,6 +2,10 @@ import UIKit
 
 public class Storage {
 
+  static var fileManager = {
+    return NSFileManager.defaultManager()
+    }()
+
   static let applicationDirectory: String = {
     let paths:NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
     let basePath: AnyObject! = (paths.count > 0) ? paths.firstObject : nil
@@ -17,7 +21,6 @@ public class Storage {
 
       if folderPath != Storage.applicationDirectory {
         var error: NSError?
-        let fileManager = NSFileManager.defaultManager()
         fileManager.createDirectoryAtPath(folderPath, withIntermediateDirectories: true, attributes: nil, error: &error)
       }
     }
@@ -26,7 +29,6 @@ public class Storage {
   }
 
   static func load(path: URLStringConvertible) -> AnyObject? {
-    let fileManager = NSFileManager.defaultManager()
     let loadPath = Storage.buildPath(path, createPath: false)
     if fileManager.fileExistsAtPath(loadPath) {
       let loadedObject: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
