@@ -8,7 +8,7 @@ public class Storage {
     return basePath as! String;
   }()
 
-  private static func buildPath(path: URLStringConvertible) -> String {
+  private static func buildPath(path: URLStringConvertible, createPath: Bool) -> String {
     var buildPath = path.string
     if path.string != Storage.applicationDirectory {
       buildPath = "\(Storage.applicationDirectory)/\(path.string)"
@@ -25,8 +25,15 @@ public class Storage {
     return buildPath
   }
 
-  static func load(path: URLStringConvertible) {
-    let loadPath = Storage.buildPath(path)
+  static func load(path: URLStringConvertible) -> AnyObject? {
+    let fileManager = NSFileManager.defaultManager()
+    let loadPath = Storage.buildPath(path, createPath: false)
+    if fileManager.fileExistsAtPath(loadPath) {
+      let loadedObject: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
+      return loadedObject
+    } else {
+      return nil
+    }
   }
 
   static func save(# resource: URLStringConvertible, _ path: URLStringConvertible) {
@@ -34,7 +41,7 @@ public class Storage {
   }
 
   static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
-    let savePath = Storage.buildPath(path)
+    let savePath = Storage.buildPath(path, createPath: true)
 
     let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(object)
     var error: NSError?
