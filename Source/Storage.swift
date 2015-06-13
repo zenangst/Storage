@@ -21,7 +21,10 @@ public class Storage {
 
       if folderPath != Storage.applicationDirectory {
         var error: NSError?
-        fileManager.createDirectoryAtPath(folderPath, withIntermediateDirectories: true, attributes: nil, error: &error)
+        fileManager.createDirectoryAtPath(folderPath,
+          withIntermediateDirectories: true,
+          attributes: nil,
+          error: &error)
       }
     }
 
@@ -30,21 +33,19 @@ public class Storage {
 
   static func load(path: URLStringConvertible) -> AnyObject? {
     let loadPath = Storage.buildPath(path, createPath: false)
-    if fileManager.fileExistsAtPath(loadPath) {
-      let loadedObject: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
-      return loadedObject
-    } else {
-      return nil
-    }
+    return fileManager.fileExistsAtPath(loadPath)
+      ? NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
+      : nil
   }
 
   static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
     let savePath = Storage.buildPath(path, createPath: true)
-
     let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(object)
     var error: NSError?
 
-    data.writeToFile(savePath, options: NSDataWritingOptions.DataWritingAtomic, error: &error)
+    data.writeToFile(savePath,
+      options: NSDataWritingOptions.DataWritingAtomic,
+      error: &error)
 
     closure(error: error)
   }
