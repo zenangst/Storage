@@ -8,7 +8,7 @@ public struct Storage {
 
   static let applicationDirectory: String = {
     let paths:NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-    let basePath: AnyObject! = (paths.count > 0) ? paths.firstObject : nil
+    let basePath: AnyObject? = (paths.count > 0) ? paths.firstObject : nil
     return basePath as! String;
   }()
 
