@@ -1,4 +1,4 @@
-![Storage logo](https://raw.githubusercontent.com/zenangst/Storage/master/Images/logo.png)
+![Storage logo](https://raw.githubusercontent.com/zenangst/Storage/master/Images/logo_v2.png)
 
 [![CI Status](http://img.shields.io/travis/zenangst/Storage.svg?style=flat)](https://travis-ci.org/zenangst/Storage)
 [![Version](https://img.shields.io/cocoapods/v/Storage.svg?style=flat)](http://cocoadocs.org/docsets/Storage)
