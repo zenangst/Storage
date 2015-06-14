@@ -7,8 +7,18 @@
 
 ## Usage
 
+### Saving an object
 ```swift
-<API>
+Storage.save(object: object, "object.extension") { error in 
+  if error != nil {
+    // handle error
+  }
+}
+```
+
+### Loading an object from disk
+```swift
+let object = Storage.load("object.extension")
 ```
 
 ## Installation
