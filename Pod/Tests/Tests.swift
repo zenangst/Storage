@@ -55,7 +55,6 @@ class Tests: XCTestCase {
 
     let loadedObject = Storage.load("Folder/SaveObject.extension") as? Object
     if loadedObject != nil {
-      XCTAssertEqual(initialObject, loadedObject!)
       XCTAssertEqual(initialObject.property!, loadedObject!.property!)
     }
 
