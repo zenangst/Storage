@@ -21,6 +21,20 @@ Storage.save(object: object, "object.extension") { error in
 let object = Storage.load("object.extension")
 ```
 
+### Save contents to a file
+
+```swift
+Storage.save(contents: expectedString, "MyFile.txt") { error in
+  XCTAssertNil(error)
+}
+```
+
+### Load contents from a file
+
+```swift
+let contents = Storage.load(contentsAtPath: "MyFile.txt")
+```
+
 ## Installation
 
 **Storage** is available through [CocoaPods](http://cocoapods.org). To install
