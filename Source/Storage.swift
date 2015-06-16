@@ -12,7 +12,7 @@ public struct Storage {
     return basePath as! String;
   }()
 
-  private static func buildPath(path: URLStringConvertible, createPath: Bool) -> String {
+  private static func buildPath(path: URLStringConvertible, createPath: Bool = false) -> String {
     var buildPath = path.string
     if path.string != Storage.applicationDirectory {
       buildPath = "\(Storage.applicationDirectory)/\(path.string)"
@@ -32,7 +32,7 @@ public struct Storage {
   }
 
   static func load(path: URLStringConvertible) -> AnyObject? {
-    let loadPath = Storage.buildPath(path, createPath: false)
+    let loadPath = Storage.buildPath(path)
     return fileManager.fileExistsAtPath(loadPath)
       ? NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
       : nil
