@@ -38,6 +38,15 @@ public struct Storage {
       : nil
   }
 
+  static func load(contentsAtPath path: URLStringConvertible, _ error: NSErrorPointer? = nil) -> String? {
+    let loadPath = Storage.buildPath(path)
+    let contents = NSString(contentsOfFile: loadPath,
+      encoding: NSUTF8StringEncoding,
+      error: error != nil ? error! : nil)
+
+    return contents as? String
+  }
+
   static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
     let savePath = Storage.buildPath(path, createPath: true)
     let data: NSData = NSKeyedArchiver.archivedDataWithRootObject(object)
