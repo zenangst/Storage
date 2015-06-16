@@ -25,7 +25,9 @@ let object = Storage.load("object.extension")
 
 ```swift
 Storage.save(contents: expectedString, "MyFile.txt") { error in
-  XCTAssertNil(error)
+  if error != nil {
+    // handle error
+  }
 }
 ```
 
