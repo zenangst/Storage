@@ -1,6 +1,6 @@
 import UIKit
 
-@objc public class Storage {
+@objc public class Storage: NSObject {
 
   static var fileManager = {
     return NSFileManager.defaultManager()
