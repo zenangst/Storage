@@ -45,7 +45,7 @@ class Tests: XCTestCase {
     }
   }
 
-  func saveSavingAndLoadingObject() {
+  func testSaveSavingAndLoadingObject() {
     let initialObject = Object()
     initialObject.property = "My Property"
 
