@@ -50,6 +50,15 @@ public struct Storage {
     closure(error: error)
   }
 
+  static func save(# contents: String, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
+    let savePath = Storage.buildPath(path, createPath: true)
+    var error: NSError?
+
+    (contents as NSString).writeToFile(savePath, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
+
+    closure(error: error)
+  }
+
 }
 
 public protocol URLStringConvertible {
