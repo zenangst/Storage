@@ -12,7 +12,7 @@ public struct Storage {
     return basePath as! String;
   }()
 
-  private static func buildPath(path: URLStringConvertible, createPath: Bool) -> String {
+  private static func buildPath(path: URLStringConvertible, createPath: Bool = false) -> String {
     var buildPath = path.string
     if path.string != Storage.applicationDirectory {
       buildPath = "\(Storage.applicationDirectory)/\(path.string)"
@@ -32,10 +32,19 @@ public struct Storage {
   }
 
   static func load(path: URLStringConvertible) -> AnyObject? {
-    let loadPath = Storage.buildPath(path, createPath: false)
+    let loadPath = Storage.buildPath(path)
     return fileManager.fileExistsAtPath(loadPath)
       ? NSKeyedUnarchiver.unarchiveObjectWithFile(loadPath)
       : nil
+  }
+
+  static func load(contentsAtPath path: URLStringConvertible, _ error: NSErrorPointer? = nil) -> String? {
+    let loadPath = Storage.buildPath(path)
+    let contents = NSString(contentsOfFile: loadPath,
+      encoding: NSUTF8StringEncoding,
+      error: error != nil ? error! : nil)
+
+    return contents as? String
   }
 
   static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
@@ -46,6 +55,15 @@ public struct Storage {
     data.writeToFile(savePath,
       options: NSDataWritingOptions.DataWritingAtomic,
       error: &error)
+
+    closure(error: error)
+  }
+
+  static func save(# contents: String, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
+    let savePath = Storage.buildPath(path, createPath: true)
+    var error: NSError?
+
+    (contents as NSString).writeToFile(savePath, atomically: true, encoding: NSUTF8StringEncoding, error: &error)
 
     closure(error: error)
   }

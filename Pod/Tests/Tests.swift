@@ -45,7 +45,7 @@ class Tests: XCTestCase {
     }
   }
 
-  func saveSavingAndLoadingObject() {
+  func testSaveSavingAndLoadingObject() {
     let initialObject = Object()
     initialObject.property = "My Property"
 
@@ -55,9 +55,19 @@ class Tests: XCTestCase {
 
     let loadedObject = Storage.load("Folder/SaveObject.extension") as? Object
     if loadedObject != nil {
-      XCTAssertEqual(initialObject, loadedObject!)
       XCTAssertEqual(initialObject.property!, loadedObject!.property!)
     }
+  }
 
+  func testSaveAndLoadContentsToFile() {
+    let path = "Folder/test.txt"
+    let expectedString = "My string"
+
+    Storage.save(contents: expectedString, path) { error in
+      XCTAssertNil(error)
+    }
+
+    let loadedString = Storage.load(contentsAtPath: path)
+    XCTAssertEqual(expectedString, loadedString!)
   }
 }
