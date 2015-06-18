@@ -111,6 +111,13 @@ public struct Storage {
       closure(error: error)
     }
   }
+
+  // MARK: - Helper Methods
+
+  public static func existsAtPath(path: URLStringConvertible) -> Bool {
+    let loadPath = Storage.buildPath(path)
+    return fileManager.fileExistsAtPath(loadPath)
+  }
 }
 
 public protocol URLStringConvertible {
