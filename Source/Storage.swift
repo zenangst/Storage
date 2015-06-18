@@ -100,6 +100,17 @@ public struct Storage {
 
     closure(error: error)
   }
+
+  public static func save(# JSON: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
+    var error: NSError?
+
+    if let data = NSJSONSerialization.dataWithJSONObject(JSON,
+      options: nil, error: &error) {
+        save(data: data, path, closure: closure)
+    } else {
+      closure(error: error)
+    }
+  }
 }
 
 public protocol URLStringConvertible {
