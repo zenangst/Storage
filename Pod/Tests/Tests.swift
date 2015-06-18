@@ -70,4 +70,17 @@ class Tests: XCTestCase {
     let loadedString = Storage.load(contentsAtPath: path)
     XCTAssertEqual(expectedString, loadedString!)
   }
+
+  func testSaveAndLoadDataToFile() {
+    let path = "Folder/test.txt"
+    let string = "My string"
+    let expectedData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+
+    Storage.save(data: expectedData, path) { error in
+      XCTAssertNil(error)
+    }
+
+    let loadedData = Storage.load(dataAtPath: path)
+    XCTAssertEqual(expectedData, loadedData!)
+  }
 }

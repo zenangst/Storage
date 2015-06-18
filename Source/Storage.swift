@@ -2,6 +2,8 @@ import UIKit
 
 public struct Storage {
 
+  // MARK: - File system
+
   static var fileManager = {
     return NSFileManager.defaultManager()
     }()
@@ -31,6 +33,8 @@ public struct Storage {
     return buildPath
   }
 
+  // MARK: - Loading
+
   public static func load(path: URLStringConvertible) -> AnyObject? {
     let loadPath = Storage.buildPath(path)
     return fileManager.fileExistsAtPath(loadPath)
@@ -46,6 +50,15 @@ public struct Storage {
 
     return contents as? String
   }
+
+  public static func load(dataAtPath path: URLStringConvertible) -> NSData? {
+    let loadPath = Storage.buildPath(path)
+    return fileManager.fileExistsAtPath(loadPath)
+      ? NSData(contentsOfFile: loadPath)
+      : nil
+  }
+
+  // MARK: - Saving
 
   public static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
     let savePath = Storage.buildPath(path, createPath: true)
@@ -68,6 +81,14 @@ public struct Storage {
     closure(error: error)
   }
 
+  public static func save(# data: NSData, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
+    let savePath = Storage.buildPath(path, createPath: true)
+    var error: NSError?
+
+    data.writeToFile(savePath, options: .DataWritingAtomic, error: &error)
+
+    closure(error: error)
+  }
 }
 
 public protocol URLStringConvertible {
