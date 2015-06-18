@@ -51,6 +51,13 @@ public struct Storage {
     return contents as? String
   }
 
+  public static func load(dataAtPath path: URLStringConvertible) -> NSData? {
+    let loadPath = Storage.buildPath(path)
+    return fileManager.fileExistsAtPath(loadPath)
+      ? NSData(contentsOfFile: loadPath)
+      : nil
+  }
+
   // MARK: - Saving
 
   public static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
