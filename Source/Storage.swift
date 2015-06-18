@@ -58,6 +58,17 @@ public struct Storage {
       : nil
   }
 
+  public static func load(JSONAtPath path: URLStringConvertible) -> AnyObject? {
+    var object: AnyObject?
+
+    if let data = load(dataAtPath: path) {
+      object = NSJSONSerialization.JSONObjectWithData(data,
+        options: .MutableContainers, error: nil)
+    }
+
+    return object
+  }
+
   // MARK: - Saving
 
   public static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
