@@ -83,4 +83,19 @@ class Tests: XCTestCase {
     let loadedData = Storage.load(dataAtPath: path)
     XCTAssertEqual(expectedData, loadedData!)
   }
+
+  func testSaveAndLoadJSONToFile() {
+    let path = "Folder/test.json"
+    let expectedObject = [
+      "key": "value",
+      "list": ["key": "value"]
+    ]
+
+    Storage.save(JSON: expectedObject, path) { error in
+      XCTAssertNil(error)
+    }
+
+    let loadedObject = Storage.load(JSONAtPath: path) as? NSDictionary
+    XCTAssertEqual(expectedObject, loadedObject!)
+  }
 }
