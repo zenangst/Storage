@@ -58,6 +58,17 @@ public struct Storage {
       : nil
   }
 
+  public static func load(JSONAtPath path: URLStringConvertible) -> AnyObject? {
+    var object: AnyObject?
+
+    if let data = load(dataAtPath: path) {
+      object = NSJSONSerialization.JSONObjectWithData(data,
+        options: .MutableContainers, error: nil)
+    }
+
+    return object
+  }
+
   // MARK: - Saving
 
   public static func save(# object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
@@ -88,6 +99,17 @@ public struct Storage {
     data.writeToFile(savePath, options: .DataWritingAtomic, error: &error)
 
     closure(error: error)
+  }
+
+  public static func save(# JSON: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (error: NSError?) -> Void) {
+    var error: NSError?
+
+    if let data = NSJSONSerialization.dataWithJSONObject(JSON,
+      options: nil, error: &error) {
+        save(data: data, path, closure: closure)
+    } else {
+      closure(error: error)
+    }
   }
 }
 
