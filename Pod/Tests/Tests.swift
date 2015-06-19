@@ -119,9 +119,10 @@ class Tests: XCTestCase {
     }
     XCTAssertTrue(Storage.existsAtPath(path))
 
-    Storage.removeAtPath(path) { error in
-      XCTAssertNil(error)
-    }
+    var error: NSError?
+    Storage.removeAtPath(path, &error)
+    XCTAssertNil(error)
+
     XCTAssertFalse(Storage.existsAtPath(path))
   }
 }
