@@ -119,13 +119,10 @@ public struct Storage {
     return fileManager.fileExistsAtPath(loadPath)
   }
 
-  public static func removeAtPath(path: URLStringConvertible, closure: (error: NSError?) -> Void) {
+  public static func removeAtPath(path: URLStringConvertible, _ error: NSErrorPointer? = nil) {
     let loadPath = Storage.buildPath(path)
 
-    var error: NSError?
-    fileManager.removeItemAtPath(loadPath, error: &error)
-
-    closure(error: error)
+    fileManager.removeItemAtPath(loadPath, error: error != nil ? error! : nil)
   }
 }
 
