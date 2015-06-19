@@ -98,4 +98,30 @@ class Tests: XCTestCase {
     let loadedObject = Storage.load(JSONAtPath: path) as? NSDictionary
     XCTAssertEqual(expectedObject, loadedObject!)
   }
+
+  func testExistsAtPath() {
+    let path = "Folder/test.txt"
+    let string = "My string"
+
+    Storage.save(contents: string, path) { error in
+      XCTAssertNil(error)
+    }
+
+    XCTAssertTrue(Storage.existsAtPath(path))
+  }
+
+  func testRemoveAtPath() {
+    let path = "Folder/test.txt"
+    let string = "My string"
+
+    Storage.save(contents: string, path) { error in
+      XCTAssertNil(error)
+    }
+    XCTAssertTrue(Storage.existsAtPath(path))
+
+    Storage.removeAtPath(path) { error in
+      XCTAssertNil(error)
+    }
+    XCTAssertFalse(Storage.existsAtPath(path))
+  }
 }
