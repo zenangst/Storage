@@ -71,6 +71,18 @@ class Tests: XCTestCase {
     XCTAssertEqual(expectedString, loadedString!)
   }
 
+  func testSaveAndLoadContentsToFileWithMultipleLines() {
+    let path = "Folder/test2.txt"
+    let expectedString = "Such String\nOn two lines\n"
+
+    Storage.save(contents: expectedString, path) { error in
+      XCTAssertNil(error)
+    }
+
+    let loadedString = Storage.load(contentsAtPath: path)
+    XCTAssertEqual(loadedString!, expectedString)
+  }
+
   func testSaveAndLoadDataToFile() {
     let path = "Folder/test.txt"
     let string = "My string"
