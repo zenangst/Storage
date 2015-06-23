@@ -4,8 +4,9 @@ public struct Storage {
 
   // MARK: - File system
 
-  static var fileManager = {
-    return NSFileManager.defaultManager()
+  static var fileManager: NSFileManager = {
+    let manager = NSFileManager.defaultManager()
+    return manager
     }()
 
   static let applicationDirectory: String = {
@@ -134,7 +135,8 @@ public protocol URLStringConvertible {
 extension String: URLStringConvertible {
 
   public var url: NSURL {
-    return NSURL(string: self)!
+    let aURL = NSURL(string: self)!
+    return aURL
   }
 
   public var string: String {
