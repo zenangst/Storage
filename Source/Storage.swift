@@ -9,7 +9,7 @@ public struct Storage {
     return manager
     }()
 
-  static let applicationDirectory: String = {
+  public static let applicationDirectory: String = {
     let paths:NSArray = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
     let basePath: AnyObject? = (paths.count > 0) ? paths.firstObject : nil
     return basePath as! String;
