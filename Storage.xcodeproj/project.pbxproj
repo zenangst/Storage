@@ -10,9 +10,9 @@
 		D5EC1A021C43D69500CDCBFD /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EC19F71C43D69500CDCBFD /* Storage.framework */; };
 		D5EC1A201C43D73900CDCBFD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC1A1B1C43D73900CDCBFD /* Storage.swift */; };
 		D5EC1A211C43D7C200CDCBFD /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC1A151C43D73900CDCBFD /* Tests.swift */; };
-		D5EC1A2A1C43D88D00CDCBFD /* Storage-Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = D5EC1A291C43D88D00CDCBFD /* Storage-Mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5EC1A311C43D88D00CDCBFD /* Storage-Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EC1A271C43D88D00CDCBFD /* Storage-Mac.framework */; };
-		D5EC1A361C43D88D00CDCBFD /* Storage_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC1A351C43D88D00CDCBFD /* Storage_MacTests.swift */; };
+		D5EC1A311C43D88D00CDCBFD /* Storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EC1A271C43D88D00CDCBFD /* Storage.framework */; };
+		D5EC1A441C43D95700CDCBFD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC1A1B1C43D73900CDCBFD /* Storage.swift */; };
+		D5EC1A451C43D95A00CDCBFD /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC1A151C43D73900CDCBFD /* Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +39,10 @@
 		D5EC1A151C43D73900CDCBFD /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		D5EC1A181C43D73900CDCBFD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5EC1A1B1C43D73900CDCBFD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		D5EC1A271C43D88D00CDCBFD /* Storage-Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Storage-Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5EC1A291C43D88D00CDCBFD /* Storage-Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Storage-Mac.h"; sourceTree = "<group>"; };
-		D5EC1A2B1C43D88D00CDCBFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5EC1A301C43D88D00CDCBFD /* Storage-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Storage-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5EC1A351C43D88D00CDCBFD /* Storage_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage_MacTests.swift; sourceTree = "<group>"; };
-		D5EC1A371C43D88D00CDCBFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5EC1A271C43D88D00CDCBFD /* Storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EC1A301C43D88D00CDCBFD /* Storage-Mac-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Storage-Mac-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EC1A3F1C43D90800CDCBFD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5EC1A421C43D91500CDCBFD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5EC1A311C43D88D00CDCBFD /* Storage-Mac.framework in Frameworks */,
+				D5EC1A311C43D88D00CDCBFD /* Storage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,8 +85,6 @@
 				D5EC1A191C43D73900CDCBFD /* Source */,
 				D5EC1A161C43D73900CDCBFD /* Storage */,
 				D5EC1A111C43D73900CDCBFD /* StorageTests */,
-				D5EC1A281C43D88D00CDCBFD /* Storage-Mac */,
-				D5EC1A341C43D88D00CDCBFD /* Storage-MacTests */,
 				D5EC19F81C43D69500CDCBFD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,8 +94,8 @@
 			children = (
 				D5EC19F71C43D69500CDCBFD /* Storage.framework */,
 				D5EC1A011C43D69500CDCBFD /* Storage-iOS-Tests.xctest */,
-				D5EC1A271C43D88D00CDCBFD /* Storage-Mac.framework */,
-				D5EC1A301C43D88D00CDCBFD /* Storage-MacTests.xctest */,
+				D5EC1A271C43D88D00CDCBFD /* Storage.framework */,
+				D5EC1A301C43D88D00CDCBFD /* Storage-Mac-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +103,7 @@
 		D5EC1A111C43D73900CDCBFD /* StorageTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5EC1A411C43D91500CDCBFD /* Mac */,
 				D5EC1A121C43D73900CDCBFD /* iOS */,
 				D5EC1A141C43D73900CDCBFD /* Shared */,
 			);
@@ -132,6 +129,7 @@
 		D5EC1A161C43D73900CDCBFD /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				D5EC1A3E1C43D90800CDCBFD /* Mac */,
 				D5EC1A171C43D73900CDCBFD /* iOS */,
 			);
 			path = Storage;
@@ -153,22 +151,20 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		D5EC1A281C43D88D00CDCBFD /* Storage-Mac */ = {
+		D5EC1A3E1C43D90800CDCBFD /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				D5EC1A291C43D88D00CDCBFD /* Storage-Mac.h */,
-				D5EC1A2B1C43D88D00CDCBFD /* Info.plist */,
+				D5EC1A3F1C43D90800CDCBFD /* Info.plist */,
 			);
-			path = "Storage-Mac";
+			path = Mac;
 			sourceTree = "<group>";
 		};
-		D5EC1A341C43D88D00CDCBFD /* Storage-MacTests */ = {
+		D5EC1A411C43D91500CDCBFD /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				D5EC1A351C43D88D00CDCBFD /* Storage_MacTests.swift */,
-				D5EC1A371C43D88D00CDCBFD /* Info.plist */,
+				D5EC1A421C43D91500CDCBFD /* Info.plist */,
 			);
-			path = "Storage-MacTests";
+			path = Mac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +181,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5EC1A2A1C43D88D00CDCBFD /* Storage-Mac.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,12 +238,12 @@
 			);
 			name = "Storage-Mac";
 			productName = "Storage-Mac";
-			productReference = D5EC1A271C43D88D00CDCBFD /* Storage-Mac.framework */;
+			productReference = D5EC1A271C43D88D00CDCBFD /* Storage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D5EC1A2F1C43D88D00CDCBFD /* Storage-MacTests */ = {
+		D5EC1A2F1C43D88D00CDCBFD /* Storage-Mac-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5EC1A3B1C43D88D00CDCBFD /* Build configuration list for PBXNativeTarget "Storage-MacTests" */;
+			buildConfigurationList = D5EC1A3B1C43D88D00CDCBFD /* Build configuration list for PBXNativeTarget "Storage-Mac-Tests" */;
 			buildPhases = (
 				D5EC1A2C1C43D88D00CDCBFD /* Sources */,
 				D5EC1A2D1C43D88D00CDCBFD /* Frameworks */,
@@ -259,9 +254,9 @@
 			dependencies = (
 				D5EC1A331C43D88D00CDCBFD /* PBXTargetDependency */,
 			);
-			name = "Storage-MacTests";
+			name = "Storage-Mac-Tests";
 			productName = "Storage-MacTests";
-			productReference = D5EC1A301C43D88D00CDCBFD /* Storage-MacTests.xctest */;
+			productReference = D5EC1A301C43D88D00CDCBFD /* Storage-Mac-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -303,7 +298,7 @@
 				D5EC19F61C43D69500CDCBFD /* Storage-iOS */,
 				D5EC1A001C43D69500CDCBFD /* Storage-iOS-Tests */,
 				D5EC1A261C43D88D00CDCBFD /* Storage-Mac */,
-				D5EC1A2F1C43D88D00CDCBFD /* Storage-MacTests */,
+				D5EC1A2F1C43D88D00CDCBFD /* Storage-Mac-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5EC1A441C43D95700CDCBFD /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5EC1A361C43D88D00CDCBFD /* Storage_MacTests.swift in Sources */,
+				D5EC1A451C43D95A00CDCBFD /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,12 +536,12 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Storage-Mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Storage/Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zenangst.Storage-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Storage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -561,12 +557,12 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Storage-Mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Storage/Mac/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zenangst.Storage-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Storage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -577,7 +573,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Storage-MacTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/StorageTests/Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zenangst.Storage-MacTests";
@@ -591,7 +587,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Storage-MacTests/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/StorageTests/Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zenangst.Storage-MacTests";
@@ -638,7 +634,7 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		D5EC1A3B1C43D88D00CDCBFD /* Build configuration list for PBXNativeTarget "Storage-MacTests" */ = {
+		D5EC1A3B1C43D88D00CDCBFD /* Build configuration list for PBXNativeTarget "Storage-Mac-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5EC1A3C1C43D88D00CDCBFD /* Debug */,
