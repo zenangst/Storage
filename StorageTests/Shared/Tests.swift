@@ -1,4 +1,5 @@
-import UIKit
+@testable import Storage
+import Foundation
 import XCTest
 
 class Object: NSCoder {
@@ -129,11 +130,10 @@ class Tests: XCTestCase {
     Storage.save(contents: string, path) { error in
       XCTAssertNil(error)
     }
+
     XCTAssertTrue(Storage.existsAtPath(path))
 
-    var error: NSError?
-    Storage.removeAtPath(path, &error)
-    XCTAssertNil(error)
+    Storage.removeAtPath(path)
 
     XCTAssertFalse(Storage.existsAtPath(path))
   }
