@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 public struct Storage {
 
@@ -139,7 +139,7 @@ public struct Storage {
     return fileManager.fileExistsAtPath(loadPath)
   }
 
-  public static func removeAtPath(path: URLStringConvertible, _ error: NSErrorPointer? = nil) {
+  public static func removeAtPath(path: URLStringConvertible) {
     let loadPath = Storage.buildPath(path)
 
     do {
