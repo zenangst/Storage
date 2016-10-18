@@ -15,7 +15,7 @@ public struct Storage {
     return basePath as! String;
   }()
 
-  fileprivate static func buildPath(_ path: URLStringConvertible, createPath: Bool = false) -> String {
+  fileprivate static func build(path: URLStringConvertible, createPath: Bool = false) -> String {
     var buildPath = path.string
     if path.string != Storage.applicationDirectory {
       buildPath = "\(Storage.applicationDirectory)/\(path.string)"
@@ -36,15 +36,15 @@ public struct Storage {
 
   // MARK: - Loading
 
-  public static func load(_ path: URLStringConvertible) -> Any? {
-    let loadPath = Storage.buildPath(path)
+  public static func load(path: URLStringConvertible) -> Any? {
+    let loadPath = Storage.build(path: path)
     return fileManager.fileExists(atPath: loadPath)
       ? NSKeyedUnarchiver.unarchiveObject(withFile: loadPath)
       : nil
   }
 
   public static func load(contentsAtPath path: URLStringConvertible, _ error: NSErrorPointer? = nil) -> String? {
-    let loadPath = Storage.buildPath(path)
+    let loadPath = Storage.build(path: path)
     let contents: NSString?
     do {
       contents = try NSString(contentsOfFile: loadPath,
@@ -55,7 +55,7 @@ public struct Storage {
   }
 
   public static func load(dataAtPath path: URLStringConvertible) -> Data? {
-    let loadPath = Storage.buildPath(path)
+    let loadPath = Storage.build(path: path)
     return fileManager.fileExists(atPath: loadPath)
       ? (try? Data(contentsOf: URL(fileURLWithPath: loadPath)))
       : nil
@@ -78,8 +78,8 @@ public struct Storage {
 
   // MARK: - Saving
 
-  public static func save(object: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
-    let savePath = Storage.buildPath(path, createPath: true)
+  public static func save(object: AnyObject, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+    let savePath = Storage.build(path: path, createPath: true)
     let data: Data = NSKeyedArchiver.archivedData(withRootObject: object)
     var error: NSError?
 
@@ -93,8 +93,8 @@ public struct Storage {
     closure(error)
   }
 
-  public static func save(contents: String, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
-    let savePath = Storage.buildPath(path, createPath: true)
+  public static func save(contents: String, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+    let savePath = Storage.build(path: path, createPath: true)
     var error: NSError?
 
     do {
@@ -106,8 +106,8 @@ public struct Storage {
     closure(error)
   }
 
-  public static func save(data: Data, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
-    let savePath = Storage.buildPath(path, createPath: true)
+  public static func save(data: Data, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+    let savePath = Storage.build(path: path, createPath: true)
     var error: NSError?
 
     do {
@@ -119,13 +119,13 @@ public struct Storage {
     closure(error)
   }
 
-  public static func save(JSON: AnyObject, _ path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+  public static func save(JSON: AnyObject, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
     var error: NSError?
 
     do {
       let data = try JSONSerialization.data(withJSONObject: JSON,
         options: [])
-        save(data: data, path, closure: closure)
+        save(data: data, path: path, closure: closure)
     } catch let error1 as NSError {
       error = error1
       closure(error)
@@ -134,13 +134,13 @@ public struct Storage {
 
   // MARK: - Helper Methods
 
-  public static func existsAtPath(_ path: URLStringConvertible) -> Bool {
-    let loadPath = Storage.buildPath(path)
+  public static func exists(atPath path: URLStringConvertible) -> Bool {
+    let loadPath = Storage.build(path: path)
     return fileManager.fileExists(atPath: loadPath)
   }
 
-  public static func removeAtPath(_ path: URLStringConvertible) {
-    let loadPath = Storage.buildPath(path)
+  public static func remove(atPath path: URLStringConvertible) {
+    let loadPath = Storage.build(path: path)
 
     do {
       try fileManager.removeItem(atPath: loadPath)
