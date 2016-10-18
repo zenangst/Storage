@@ -9,11 +9,11 @@ class Object: NSCoder {
   required convenience init(coder decoder: NSCoder) {
     self.init()
 
-    self.property = decoder.decodeObjectForKey("property") as? String
+    self.property = decoder.decodeObject(forKey: "property") as? String
   }
 
-  func encodeWithCoder(coder: NSCoder) {
-    coder.encodeObject(self.property, forKey: "property")
+  func encodeWithCoder(_ coder: NSCoder) {
+    coder.encode(self.property, forKey: "property")
   }
 
 }
@@ -87,7 +87,7 @@ class Tests: XCTestCase {
   func testSaveAndLoadDataToFile() {
     let path = "Folder/test.txt"
     let string = "My string"
-    let expectedData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+    let expectedData = string.data(using: String.Encoding.utf8)!
 
     Storage.save(data: expectedData, path) { error in
       XCTAssertNil(error)
@@ -102,7 +102,7 @@ class Tests: XCTestCase {
     let expectedObject = [
       "key": "value",
       "list": ["key": "value"]
-    ]
+    ] as [String : Any]
 
     Storage.save(JSON: expectedObject, path) { error in
       XCTAssertNil(error)
