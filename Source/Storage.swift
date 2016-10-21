@@ -78,7 +78,7 @@ public struct Storage {
 
   // MARK: - Saving
 
-  public static func save(object: AnyObject, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+  public static func save(object: Any, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
     let savePath = Storage.build(path: path, createPath: true)
     let data: Data = NSKeyedArchiver.archivedData(withRootObject: object)
     var error: NSError?
@@ -119,7 +119,7 @@ public struct Storage {
     closure(error)
   }
 
-  public static func save(JSON: AnyObject, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
+  public static func save(JSON: Any, path: URLStringConvertible = Storage.applicationDirectory, closure: (_ error: NSError?) -> Void) {
     var error: NSError?
 
     do {
