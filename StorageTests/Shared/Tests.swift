@@ -9,11 +9,11 @@ class Object: NSCoder {
   required convenience init(coder decoder: NSCoder) {
     self.init()
 
-    self.property = decoder.decodeObjectForKey("property") as? String
+    self.property = decoder.decodeObject(forKey: "property") as? String
   }
 
-  func encodeWithCoder(coder: NSCoder) {
-    coder.encodeObject(self.property, forKey: "property")
+  func encodeWithCoder(_ coder: NSCoder) {
+    coder.encode(self.property, forKey: "property")
   }
 
 }
@@ -23,7 +23,7 @@ class Tests: XCTestCase {
   func testSavingObjectWithFilename() {
     let object = Object()
     object.property = "My Property"
-    Storage.save(object: object, "RootObject.extension") { error in
+    Storage.save(object: object, path: "RootObject.extension") { error in
       XCTAssertNil(error)
     }
   }
@@ -32,7 +32,7 @@ class Tests: XCTestCase {
     let object = Object()
     object.property = "My Property"
 
-    Storage.save(object: object, "Folder/RootObject.extension") { error in
+    Storage.save(object: object, path: "Folder/RootObject.extension") { error in
       XCTAssertNil(error)
     }
   }
@@ -41,7 +41,7 @@ class Tests: XCTestCase {
     let object = Object()
     object.property = "My Property"
 
-    Storage.save(object: object, "Folder/SubFolder/RootObject.extension") { error in
+    Storage.save(object: object, path: "Folder/SubFolder/RootObject.extension") { error in
       XCTAssertNil(error)
     }
   }
@@ -50,11 +50,11 @@ class Tests: XCTestCase {
     let initialObject = Object()
     initialObject.property = "My Property"
 
-    Storage.save(object: initialObject, "Folder/SaveObject.extension") { error in
+    Storage.save(object: initialObject, path: "Folder/SaveObject.extension") { error in
       XCTAssertNil(error)
     }
 
-    let loadedObject = Storage.load("Folder/SaveObject.extension") as? Object
+    let loadedObject = Storage.load(path: "Folder/SaveObject.extension") as? Object
     if loadedObject != nil {
       XCTAssertEqual(initialObject.property!, loadedObject!.property!)
     }
@@ -64,7 +64,7 @@ class Tests: XCTestCase {
     let path = "Folder/test.txt"
     let expectedString = "My string"
 
-    Storage.save(contents: expectedString, path) { error in
+    Storage.save(contents: expectedString, path: path) { error in
       XCTAssertNil(error)
     }
 
@@ -76,7 +76,7 @@ class Tests: XCTestCase {
     let path = "Folder/test2.txt"
     let expectedString = "Such String\nOn two lines\n"
 
-    Storage.save(contents: expectedString, path) { error in
+    Storage.save(contents: expectedString, path: path) { error in
       XCTAssertNil(error)
     }
 
@@ -87,9 +87,9 @@ class Tests: XCTestCase {
   func testSaveAndLoadDataToFile() {
     let path = "Folder/test.txt"
     let string = "My string"
-    let expectedData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+    let expectedData = string.data(using: String.Encoding.utf8)!
 
-    Storage.save(data: expectedData, path) { error in
+    Storage.save(data: expectedData, path: path) { error in
       XCTAssertNil(error)
     }
 
@@ -99,42 +99,42 @@ class Tests: XCTestCase {
 
   func testSaveAndLoadJSONToFile() {
     let path = "Folder/test.json"
-    let expectedObject = [
+    let expectedObject: [String: Any] = [
       "key": "value",
       "list": ["key": "value"]
     ]
 
-    Storage.save(JSON: expectedObject, path) { error in
+    Storage.save(JSON: expectedObject, path: path) { error in
       XCTAssertNil(error)
     }
 
-    let loadedObject = Storage.load(JSONAtPath: path) as? NSDictionary
-    XCTAssertEqual(expectedObject, loadedObject!)
+    let loadedObject = Storage.load(JSONAtPath: path) as? [String: Any]
+    XCTAssertEqual(NSDictionary(dictionary: expectedObject), NSDictionary(dictionary: loadedObject!))
   }
 
   func testExistsAtPath() {
     let path = "Folder/test.txt"
     let string = "My string"
 
-    Storage.save(contents: string, path) { error in
+    Storage.save(contents: string, path: path) { error in
       XCTAssertNil(error)
     }
 
-    XCTAssertTrue(Storage.existsAtPath(path))
+    XCTAssertTrue(Storage.exists(atPath: path))
   }
 
   func testRemoveAtPath() {
     let path = "Folder/test.txt"
     let string = "My string"
 
-    Storage.save(contents: string, path) { error in
+    Storage.save(contents: string, path: path) { error in
       XCTAssertNil(error)
     }
 
-    XCTAssertTrue(Storage.existsAtPath(path))
+    XCTAssertTrue(Storage.exists(atPath: path))
 
-    Storage.removeAtPath(path)
+    Storage.remove(atPath: path)
 
-    XCTAssertFalse(Storage.existsAtPath(path))
+    XCTAssertFalse(Storage.exists(atPath: path))
   }
 }
